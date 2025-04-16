@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>13</LangVersion>
+		<DevelopmentDependency>true</DevelopmentDependency>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MintPlayer.SourceGenerators.Tools" Version="4.16.0" />
+		<PackageReference Include="MintPlayer.ValueComparerGenerator" Version="4.16.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>
