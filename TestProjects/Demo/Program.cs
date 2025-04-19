@@ -2,21 +2,14 @@
 
 Console.WriteLine("Hello, World!");
 
-public static class Settings
-{
-    public static SettingsSaver<SettingType1> Name1()
-    {
-        return new SettingsSaver<SettingType1>();
-    }
-    public static SettingsSaver<SettingType2> Name2()
-    {
-        return new SettingsSaver<SettingType2>();
-    }
-    public static SettingsSaver<SettingType3> Name3()
-    {
-        return new SettingsSaver<SettingType3>();
-    }
-}
+Demo.Settings.Name1.Save(new SettingType1());
+SettingType1? setting1 = Demo.Settings.Name1.Load();
+
+Demo.Settings.Name2.Save(new SettingType2());
+SettingType2? setting2 = Demo.Settings.Name2.Load();
+
+Demo.Settings.Name3.Save(new SettingType3());
+SettingType3? setting3 = Demo.Settings.Name3.Load();
 
 public enum ESettingNames
 {

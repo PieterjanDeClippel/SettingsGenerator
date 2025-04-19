@@ -24,7 +24,7 @@ public class SettingsProducer : Producer
 
         foreach (var setting in settingInfos)
         {
-            writer.WriteLine($$"""public SettingsSaver<{{setting.SettingType}}> {{setting.Name}} { get; } = new SettingsSaver<{{setting.SettingType}}>();""");
+            writer.WriteLine($$"""public static SettingsSaver<{{setting.SettingType}}> {{setting.Name}} { get; } = new SettingsSaver<{{setting.SettingType}}>();""");
         }
 
         writer.Indent--;
