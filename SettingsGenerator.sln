@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "TestProjects\Demo\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsGenerator.Attributes", "SettingsGenerator.Attributes\SettingsGenerator.Attributes.csproj", "{9935F077-620F-4713-BEEB-551BC2ECCAEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{C28BCE1B-6C3C-406C-B014-F416A307C41B}"
+	ProjectSection(SolutionItems) = preProject
+		eng\filenesting.targets = eng\filenesting.targets
+		eng\sourcegenerator.targets = eng\sourcegenerator.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

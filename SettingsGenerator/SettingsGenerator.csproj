@@ -1,17 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<LangVersion>13</LangVersion>
-		<DevelopmentDependency>true</DevelopmentDependency>
-	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\SettingsGenerator.Attributes\SettingsGenerator.Attributes.csproj" />
+	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MintPlayer.SourceGenerators.Tools" Version="4.16.0" />
-		<PackageReference Include="MintPlayer.ValueComparerGenerator" Version="4.16.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<!-- FSR attribute assemblies should not be with a roslyn version path -->
+		<None Include="..\SettingsGenerator.Attributes\bin\$(Configuration)\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/roslyn4.0/cs" Visible="true" />
+		<None Include="..\SettingsGenerator.Attributes\bin\$(Configuration)\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/roslyn4.9/cs" Visible="true" />
 	</ItemGroup>
+
+	<PropertyGroup>
+		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+	</PropertyGroup>
+
+	<Target Name="GetDependencyTargetPaths">
+		<ItemGroup>
+			<TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\SettingsGenerator.Attributes\bin\$(Configuration)\netstandard2.0\SettingsGenerator.Attributes.dll" IncludeRuntimeDependency="true" />
+		</ItemGroup>
+	</Target>
+
+	<Import Project="..\eng\sourcegenerator.targets" />
 
 </Project>
