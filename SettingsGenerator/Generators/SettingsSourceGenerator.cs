@@ -19,17 +19,19 @@ public class SettingsSourceGenerator : IncrementalGenerator
                     if (context.Node is EnumMemberDeclarationSyntax enumMemberDeclaration &&
                         context.SemanticModel.GetDeclaredSymbol(enumMemberDeclaration, ct) is IFieldSymbol enumFieldSymbol)
                     {
-                        // How can I get the SettingsGenerator.Attributes.SettingTypeAttribute which is defined in the SettingsGenerator.Attributes project here?
-                        var settingTypeAttributesSymbol = context.SemanticModel.Compilation.GetTypesByMetadataName("SettingsGenerator.Attributes.SettingTypeAttribute");
                         var settingTypeAttributeSymbol = context.SemanticModel.Compilation.GetTypeByMetadataName("SettingsGenerator.Attributes.SettingTypeAttribute");
                         var enumSymbol = enumFieldSymbol.ContainingType;
                         var attributeData = enumFieldSymbol.GetAttributes()
                             .FirstOrDefault(attr => SymbolEqualityComparer.Default.Equals(attr.AttributeClass, settingTypeAttributeSymbol));
 
-                        if (attributeData != null)
+                        if (attributeData is { ConstructorArguments.Length: > 0 } &&
+                            attributeData.ConstructorArguments[0].Value is INamedTypeSymbol settingTypeSymbol)
                         {
-                            var settingType = attributeData.ConstructorArguments[0].Value;
-                            return new SettingInfo();
+                            return new SettingInfo
+                            {
+                                Name = enumFieldSymbol.Name,
+                                SettingType = settingTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat.WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)),
+                            };
                         }
                     }
 

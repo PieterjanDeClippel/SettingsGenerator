@@ -3,8 +3,10 @@
 namespace SettingsGenerator.Attributes
 {
     [AttributeUsage(AttributeTargets.Field)]
-    public class SettingTypeAttribute<TSetting> : Attribute
+    public class SettingTypeAttribute : Attribute
     {
-
+        public SettingTypeAttribute(Type settingType)
+        {
+        }
     }
 }

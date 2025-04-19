@@ -18,25 +18,11 @@ public static class Settings
     }
 }
 
-public class SettingsSaver<TSetting>
-{
-    public void Save(TSetting setting)
-    {
-        // Save logic here
-    }
-
-    public TSetting? Load()
-    {
-        // Load logic here
-        return default(TSetting);
-    }
-}
-
 public enum ESettingNames
 {
-    [SettingType<SettingType1>] Name1,
-    [SettingType<SettingType2>] Name2,
-    [SettingType<SettingType3>] Name3,
+    [SettingType(typeof(SettingType1))] Name1,
+    [SettingType(typeof(SettingType2))] Name2,
+    [SettingType(typeof(SettingType3))] Name3,
 }
 
 public class SettingType1
